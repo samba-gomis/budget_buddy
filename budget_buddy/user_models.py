@@ -25,13 +25,60 @@ def get_user(email):
     cursor=conn.cursor()
 
     try:
-        request="SELECT * from user WHERE email=?"
+        request="SELECT * from users WHERE email=?"
         value=(email,)
         cursor.execute(request,value)
         return cursor.fetchall()
     
     finally:
         conn.close()
+
+def update_user_profile(column_name, new_value,user_id):
+
+    conn=get_connection()
+    cursor=conn.cursor()
+
+    try:
+        request=f"UPDATE users SET {column_name}=? WHERE id=?"
+        values=(new_value,user_id)
+        cursor.execute(request,values)
+        conn.commit()
+       
+    except sqlite3.IntegrityError:
+        print("Error, something already exist")
+    except Exception as e:
+        print(f"Error: {e}")
+    finally:
+        conn.close()
+
+
+def delete_user(user_id):
+
+    conn=get_connection()
+    cursor=conn.cursor()
+
+    try:
+        request="DELETE from users WHERE id=?"
+        value=(user_id,)
+        cursor.execute(request, value)
+        conn.commit()
+        
+        if cursor.rowcount>0:
+            print(f"{user_id} successfully deleted!")
+            return True
+        else:
+            print(f"{user_id} doesn't exist")
+            return False
+        
+    except Exception as e:
+        print(f"Error: {e}")
+    finally:
+        conn.close()
+    
+
+    
+
+        
         
 
   
