@@ -1,14 +1,18 @@
 import sqlite3
 from databases.database import *
+import bcrypt
 
 def create_user(last_name, first_name, email, password):
+     
+    password_bytes=password.encode("utf-8")
+    hash=bcrypt.hashpw(password_bytes, bcrypt.gensalt())
 
     conn=get_connection()
     cursor=conn.cursor()
 
     try:
         request="INSERT INTO users (last_name, first_name, email, password) VALUES (?,?,?,?)"
-        values=(last_name, first_name, email, password)
+        values=(last_name, first_name, email, hash)
         cursor.execute(request, values)
         conn.commit()
 
@@ -62,7 +66,7 @@ def delete_user(user_id):
         value=(user_id,)
         cursor.execute(request, value)
         conn.commit()
-        
+
         if cursor.rowcount>0:
             print(f"{user_id} successfully deleted!")
             return True
