@@ -1,5 +1,6 @@
 from user_models import * 
 from validators import *
+from User import User
 import bcrypt
 
 def verify_user_login(email,password):
@@ -8,7 +9,7 @@ def verify_user_login(email,password):
 
     if user:
         if bcrypt.checkpw(password.encode("utf-8"), user['password']):
-            return user
+            return User(id=user['id'], last_name=user['last_name'], first_name=user['first_name'], email=user['email'])
     return None
 
 def register(last_name, first_name, email, password,confirm_password):
