@@ -1,6 +1,6 @@
-from user_models import * 
-from validators import *
-from User import User
+from repositories.user_models import * 
+from repositories.validators import *
+from repositories.User import User
 import bcrypt
 
 def verify_user_login(email,password):

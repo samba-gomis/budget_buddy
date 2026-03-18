@@ -1,6 +1,6 @@
 from databases.database import *
-from user_models import *
-from validators import *
+from repositories.user_models import *
+from repositories.validators import *
 
 class User:
     def __init__(self, id, last_name, first_name, email):

@@ -1,5 +1,5 @@
 import re
-from user_models import *
+from repositories.user_models import *
 
 def check_email(email):
     pattern= r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$'
