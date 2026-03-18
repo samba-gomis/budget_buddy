@@ -32,7 +32,7 @@ def get_user(email):
         request="SELECT * from users WHERE email=?"
         value=(email,)
         cursor.execute(request,value)
-        return cursor.fetchall()
+        return cursor.fetchone()
     
     finally:
         conn.close()
