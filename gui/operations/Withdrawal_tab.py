@@ -1,13 +1,11 @@
-# gui/operations/withdrawal_tab.py
-
 import customtkinter as ctk
 from tkinter import messagebox
 from repositories.account_model import get_balance
-from repositories.account import Account
+from repositories.Account import Account
 
 
 def build_withdrawal_tab(parent, account_id: int, on_done=None):
-    """Builds the withdrawal form inside the given tab."""
+    """Builds the withdrawal form inside the given tab"""
 
     ctk.CTkLabel(parent, text="Amount (€)",
                  font=("Roboto", 12)).pack(anchor="w", padx=20, pady=(16, 2))
@@ -37,15 +35,15 @@ def build_withdrawal_tab(parent, account_id: int, on_done=None):
             if amount <= 0:
                 raise ValueError
         except ValueError:
-            messagebox.showerror("Error", "Please enter a valid positive amount.")
+            messagebox.showerror("Error", "Please enter a valid positive amount")
             return
 
         try:
-            compte = Account(account_id=account_id)
-            compte.balance = get_balance(account_id)
-            compte.retirer(amount=amount,
+            account = Account(account_id=account_id)
+            account.balance = get_balance(account_id)
+            account.withdraw(amount=amount,
                            description=desc_entry.get().strip() or "Withdrawal")
-            messagebox.showinfo("Success", f"{amount:.2f} € withdrawn successfully.")
+            messagebox.showinfo("Success", f"{amount:.2f} € withdrawn successfully")
             amount_var.set("")
             desc_entry.delete(0, "end")
             if on_done:

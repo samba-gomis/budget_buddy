@@ -1,6 +1,3 @@
-# gui/transactions_view.py
-# Displays the transaction history with search and filter options
-
 import tkinter as tk
 from tkinter import ttk, messagebox
 from services import transaction_service
@@ -9,7 +6,7 @@ from services import transaction_service
 class Transactions_View(tk.Frame):
     """
     Transaction history view.
-    Allows the user to browse, search, and filter their transactions.
+    Allows the user to browse, search, and filter their transactions
     """
 
     def __init__(self, parent, account_id: int):
@@ -18,9 +15,8 @@ class Transactions_View(tk.Frame):
         self._build_ui()
         self._load_transactions()
 
-
     def _build_ui(self):
-        """Builds the full layout: title, filter bar, and transaction table."""
+        """Builds the full layout: title, filter bar, and transaction table"""
         self._build_title()
         self._build_filter_bar()
         self._build_table()
@@ -36,14 +32,14 @@ class Transactions_View(tk.Frame):
 
         tk.Label(
             self,
-            text="Search and filter your transactions below.",
+            text="Search and filter your transactions below",
             font=("Helvetica", 11),
             bg="#f5f6fa",
             fg="#636e72"
         ).pack(anchor="w", padx=24, pady=(0, 12))
 
     def _build_filter_bar(self):
-        """Builds the row of filters: date, type, category, amount sort, and reset."""
+        """Builds the row of filters: date, type, category, amount sort, and reset"""
         bar = tk.Frame(self, bg="#ffffff", relief="flat", bd=0)
         bar.pack(fill="x", padx=24, pady=(0, 12))
         bar.configure(highlightbackground="#dfe6e9", highlightthickness=1)
@@ -127,7 +123,7 @@ class Transactions_View(tk.Frame):
         ).grid(row=0, column=3)
 
     def _build_table(self):
-        """Builds the scrollable transaction table."""
+        """Builds the scrollable transaction table"""
         container = tk.Frame(self, bg="#f5f6fa")
         container.pack(fill="both", expand=True, padx=24, pady=(0, 20))
 
@@ -181,11 +177,10 @@ class Transactions_View(tk.Frame):
             font=("Helvetica", 10)
         ).pack(anchor="e", padx=24, pady=(0, 8))
 
-
     def _load_transactions(self, transactions: list[dict] | None = None):
         """
-        Populates the table.
-        If transactions is None, loads all transactions from the service.
+        Populates the table
+        If transactions is None, loads all transactions from the service
         """
         # Clear existing rows
         for row in self.table.get_children():
@@ -195,7 +190,7 @@ class Transactions_View(tk.Frame):
             transactions = transaction_service.get_all(self.account_id)
 
         if not transactions:
-            self.summary_var.set("No transactions found.")
+            self.summary_var.set("No transactions found")
             return
 
         total_in  = 0.0
@@ -234,9 +229,8 @@ class Transactions_View(tk.Frame):
             f"Total in: +{total_in:.2f} €  |  Total out: -{total_out:.2f} €"
         )
 
-
     def _apply_filters(self):
-        """Reads the filter inputs and fetches the matching transactions."""
+        """Reads the filter inputs and fetches the matching transactions"""
         start   = self.start_date_var.get().strip()
         end     = self.end_date_var.get().strip()
         type_   = self.type_var.get()
@@ -278,7 +272,7 @@ class Transactions_View(tk.Frame):
             messagebox.showerror("Filter error", str(e))
 
     def _reset_filters(self):
-        """Clears all filters and reloads all transactions."""
+        """Clears all filters and reloads all transactions"""
         self.start_date_var.set("")
         self.end_date_var.set("")
         self.type_var.set("All")

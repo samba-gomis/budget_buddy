@@ -1,6 +1,3 @@
-# gui/dashboard/summary_cards.py
-# The 3 summary cards: balance, income, expenses
-
 import customtkinter as ctk
 from repositories.account_model import get_balance
 from repositories.transaction_repo import get_by_month
@@ -8,7 +5,7 @@ from datetime import datetime
 
 
 def build_summary_cards(parent, account_id: int):
-    """Builds the 3 summary cards and packs them into parent."""
+    """Builds the 3 summary cards and packs them into parent"""
     income, expenses = _get_monthly_totals(account_id)
     balance = get_balance(account_id) if account_id else 0.0
     month_label = datetime.now().strftime("%B %Y")

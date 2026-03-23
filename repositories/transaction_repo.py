@@ -1,6 +1,3 @@
-# repositories/transaction_repo.py
-# All database operations related to transactions (CRUD + filters)
-
 from databases.database import get_connection, close_connection
 
 
@@ -8,7 +5,7 @@ def add(account_id: int, reference: str, description: str,
         amount: float, date: str, type_: str, category_id: int | None = None) -> int:
     """
     Inserts a new transaction into the database
-    Returns the ID of the newly created transaction
+    Returns the ID of the new created transaction
     """
     conn = get_connection()
     try:
@@ -73,8 +70,8 @@ def filter_by_date(account_id: int, date: str) -> list[dict]:
 
 def filter_by_range(account_id: int, start_date: str, end_date: str) -> list[dict]:
     """
-    Returns all transactions between two dates (inclusive).
-    Dates must be in YYYY-MM-DD format.
+    Returns all transactions between two dates (inclusive)
+    Dates must be in YYYY-MM-DD format
     """
     conn = get_connection()
     try:
@@ -96,7 +93,7 @@ def filter_by_range(account_id: int, start_date: str, end_date: str) -> list[dic
 
 def filter_by_type(account_id: int, type_: str) -> list[dict]:
     """
-    Returns all transactions of a given type: 'deposit', 'withdrawal', or 'transfer'.
+    Returns all transactions of a given type: 'deposit', 'withdrawal', or 'transfer'
     """
     conn = get_connection()
     try:
@@ -118,7 +115,7 @@ def filter_by_type(account_id: int, type_: str) -> list[dict]:
 
 def filter_by_category(account_id: int, category_name: str) -> list[dict]:
     """
-    Returns all transactions matching a given category name (e.g. 'food', 'leisure').
+    Returns all transactions matching a given category name (e.g. 'food', 'leisure')
     """
     conn = get_connection()
     try:
@@ -140,8 +137,8 @@ def filter_by_category(account_id: int, category_name: str) -> list[dict]:
 
 def sort_by_amount(account_id: int, order: str = "asc") -> list[dict]:
     """
-    Returns all transactions sorted by amount.
-    order: 'asc' for ascending, 'desc' for descending.
+    Returns all transactions sorted by amount
+    order: 'asc' for ascending, 'desc' for descending
     """
     direction = "ASC" if order.lower() == "asc" else "DESC"
     conn = get_connection()
@@ -164,8 +161,8 @@ def sort_by_amount(account_id: int, order: str = "asc") -> list[dict]:
 
 def get_by_month(account_id: int, year: int, month: int) -> list[dict]:
     """
-    Returns all transactions for a specific month and year.
-    Used by the dashboard to compute the monthly summary.
+    Returns all transactions for a specific month and year
+    Used by the dashboard to compute the monthly summary
     """
     conn = get_connection()
     try:

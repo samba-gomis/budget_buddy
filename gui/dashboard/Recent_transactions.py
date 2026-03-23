@@ -1,13 +1,10 @@
-# gui/dashboard/recent_transactions.py
-# Small table showing the 5 most recent transactions
-
 import customtkinter as ctk
 from tkinter import ttk
 from repositories.transaction_repo import get_all
 
 
 def build_recent_transactions(parent, account_id: int, limit: int = 5):
-    """Builds and packs the recent transactions table into parent."""
+    """Builds and packs the recent transactions table into parent"""
     ctk.CTkLabel(parent, text="Recent transactions",
                  font=("Roboto", 16, "bold")).pack(anchor="w", pady=(0, 6))
 
@@ -17,7 +14,7 @@ def build_recent_transactions(parent, account_id: int, limit: int = 5):
     transactions = get_all(account_id)[:limit] if account_id else []
 
     if not transactions:
-        ctk.CTkLabel(frame, text="No transactions yet.",
+        ctk.CTkLabel(frame, text="No transactions yet",
                      text_color="gray",
                      font=("Roboto", 12)).pack(pady=16)
         return

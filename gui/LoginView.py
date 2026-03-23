@@ -1,5 +1,3 @@
-# gui/LoginView.py
-
 from repositories.auth_service import verify_user_login
 import customtkinter as ctk
 from tkinter import messagebox
@@ -36,7 +34,7 @@ class LoginView(ctk.CTk):
         password = self.password_entry.get()
 
         if not email or not password:
-            messagebox.showerror("Error", "Please fill in all fields.")
+            messagebox.showerror("Error", "Please fill in all fields")
             return
 
         user = verify_user_login(email, password)
@@ -45,4 +43,4 @@ class LoginView(ctk.CTk):
             messagebox.showinfo("Success", f"Welcome back, {user.first_name}!")
             self.on_login_success(user)
         else:
-            messagebox.showerror("Error", "Wrong email or password.")
+            messagebox.showerror("Error", "Wrong email or password")

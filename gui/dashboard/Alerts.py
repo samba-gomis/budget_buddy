@@ -1,6 +1,3 @@
-# gui/dashboard/alerts.py
-# Alert banners (overdraft, low balance, no transactions)
-
 import customtkinter as ctk
 from repositories.account_model import get_balance
 from repositories.transaction_repo import get_by_month
@@ -8,7 +5,7 @@ from datetime import datetime
 
 
 def get_alerts(account_id: int) -> list[str]:
-    """Returns a list of alert messages for the current account."""
+    """Returns a list of alert messages for the current account"""
     if not account_id:
         return ["No bank account found for this user."]
 
@@ -16,19 +13,19 @@ def get_alerts(account_id: int) -> list[str]:
     balance = get_balance(account_id)
 
     if balance < 0:
-        alerts.append(f"⚠ Overdraft! Your balance is {balance:.2f} €")
+        alerts.append(f"Overdraft! Your balance is {balance:.2f} €")
     elif balance < 50:
-        alerts.append(f"⚠ Low balance: only {balance:.2f} € remaining.")
+        alerts.append(f"Low balance: only {balance:.2f} € remaining")
 
     now = datetime.now()
     if not get_by_month(account_id, now.year, now.month):
-        alerts.append("ℹ No transactions recorded this month.")
+        alerts.append("No transactions recorded this month")
 
     return alerts
 
 
 def build_alerts(parent, account_id: int):
-    """Builds and packs alert banners into parent. Does nothing if no alerts."""
+    """Builds and packs alert banners into parent. Does nothing if no alerts"""
     alerts = get_alerts(account_id)
     if not alerts:
         return

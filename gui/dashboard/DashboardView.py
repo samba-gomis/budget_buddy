@@ -1,6 +1,3 @@
-# gui/DashboardView.py
-# Main dashboard — assembles all dashboard components
-
 import customtkinter as ctk
 from tkinter import messagebox
 from repositories.account_model import get_accounts_by_user
@@ -59,7 +56,7 @@ class DashboardView(ctk.CTk):
 
     def _open_transactions(self):
         if not self.account_id:
-            messagebox.showwarning("Warning", "No account found.")
+            messagebox.showwarning("Warning", "No account found")
             return
         from gui.transaction_view import Transactions_View
         win = ctk.CTkToplevel(self)
@@ -69,7 +66,7 @@ class DashboardView(ctk.CTk):
 
     def _open_operations(self):
         if not self.account_id:
-            messagebox.showwarning("Warning", "No account found.")
+            messagebox.showwarning("Warning", "No account found")
             return
         try:
             from gui.OperationsView import OperationsView

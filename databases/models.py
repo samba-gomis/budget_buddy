@@ -1,5 +1,4 @@
 # Database schema definitions
-
 #  Table users 
 # Stores information about each registered user
 CREATE_TABLE_USERS = """

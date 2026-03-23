@@ -6,8 +6,8 @@ import bcrypt
 
 def verify_user_login(email: str, password: str) -> User | None:
     """
-    Verifies login credentials.
-    Returns a User object on success, or None if credentials are invalid.
+    Verifies login credentials
+    Returns a User object on success, or None if credentials are invalid
     """
     user = get_user(email)
     if user is None:
@@ -21,8 +21,8 @@ def verify_user_login(email: str, password: str) -> User | None:
 def register(last_name: str, first_name: str, email: str,
              password: str, confirm_password: str) -> tuple[bool, str]:
     """
-    Registers a new user after validating all inputs.
-    Returns (True, success_message) or (False, error_message).
+    Registers a new user after validating all inputs
+    Returns (True, success_message) or (False, error_message)
     """
     valid, error = check_email(email)
     if not valid:

@@ -55,7 +55,6 @@ def update_user_profile(column_name, new_value,user_id):
     finally:
         conn.close()
 
-
 def delete_user(user_id):
 
     conn=get_connection()
@@ -78,13 +77,3 @@ def delete_user(user_id):
         print(f"Error: {e}")
     finally:
         conn.close()
-    
-
-    
-
-        
-        
-
-  
-
-

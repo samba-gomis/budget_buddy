@@ -1,6 +1,3 @@
-# gui/dashboard/chart.py
-# Bar chart of spending by category for the current month
-
 import tkinter as tk
 import customtkinter as ctk
 from repositories.transaction_repo import get_by_month
@@ -11,7 +8,7 @@ BAR_COLORS = ["#3498db", "#2ecc71", "#e67e22", "#9b59b6",
 
 
 def build_chart(parent, account_id: int):
-    """Builds and packs the spending bar chart into parent."""
+    """Builds and packs the spending bar chart into parent"""
     ctk.CTkLabel(parent, text="Spending by category (this month)",
                  font=("Roboto", 16, "bold")).pack(anchor="w", pady=(16, 6))
 
@@ -22,7 +19,7 @@ def build_chart(parent, account_id: int):
     totals = _get_category_totals(account_id)
 
     if not totals:
-        ctk.CTkLabel(frame, text="No spending data for this month.",
+        ctk.CTkLabel(frame, text="No spending data for this month",
                      text_color="gray",
                      font=("Roboto", 12)).pack(expand=True)
         return

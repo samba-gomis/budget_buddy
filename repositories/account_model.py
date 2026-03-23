@@ -1,13 +1,10 @@
-# repositories/account_model.py
-# All database operations related to accounts and balances
-
 from databases.database import get_connection, close_connection
 
 
 def create_account(user_id: int, balance: float = 0.0) -> int:
     """
-    Creates a new account for a user.
-    Returns the ID of the newly created account.
+    Creates a new account for a user
+    Returns the ID of the newly created account
     """
     conn = get_connection()
     try:
@@ -24,7 +21,7 @@ def create_account(user_id: int, balance: float = 0.0) -> int:
 
 def get_accounts_by_user(user_id: int) -> list[dict]:
     """
-    Returns all accounts belonging to a user.
+    Returns all accounts belonging to a user
     """
     conn = get_connection()
     try:
@@ -37,7 +34,7 @@ def get_accounts_by_user(user_id: int) -> list[dict]:
 
 def get_account_by_id(account_id: int) -> dict | None:
     """
-    Returns a single account by its ID.
+    Returns a single account by its ID
     """
     conn = get_connection()
     try:
@@ -51,7 +48,7 @@ def get_account_by_id(account_id: int) -> dict | None:
 
 def get_balance(account_id: int) -> float:
     """
-    Returns the current balance of an account.
+    Returns the current balance of an account
     """
     conn = get_connection()
     try:
@@ -65,7 +62,7 @@ def get_balance(account_id: int) -> float:
 
 def update_balance(account_id: int, new_balance: float) -> None:
     """
-    Updates the balance of an account.
+    Updates the balance of an account
     """
     conn = get_connection()
     try:

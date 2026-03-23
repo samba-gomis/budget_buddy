@@ -1,14 +1,12 @@
-# gui/operations/transfer_tab.py
-
 import customtkinter as ctk
 from tkinter import messagebox
 from repositories.account_model import get_balance, get_accounts_by_user
 from repositories.user_models import get_user
-from repositories.account import Account
+from repositories.Account import Account
 
 
 def build_transfer_tab(parent, account_id: int, on_done=None):
-    """Builds the transfer form inside the given tab."""
+    """Builds the transfer form inside the given tab"""
 
     ctk.CTkLabel(parent, text="Recipient email",
                  font=("Roboto", 12)).pack(anchor="w", padx=20, pady=(16, 2))
@@ -31,7 +29,7 @@ def build_transfer_tab(parent, account_id: int, on_done=None):
     def confirm():
         recipient_email = email_entry.get().strip()
         if not recipient_email:
-            messagebox.showerror("Error", "Please enter a recipient email.")
+            messagebox.showerror("Error", "Please enter a recipient email")
             return
 
         try:
@@ -39,18 +37,18 @@ def build_transfer_tab(parent, account_id: int, on_done=None):
             if amount <= 0:
                 raise ValueError
         except ValueError:
-            messagebox.showerror("Error", "Please enter a valid positive amount.")
+            messagebox.showerror("Error", "Please enter a valid positive amount")
             return
 
         try:
             recipient_user = get_user(recipient_email)
             if not recipient_user:
-                messagebox.showerror("Error", "No account found with this email.")
+                messagebox.showerror("Error", "No account found with this email")
                 return
 
             recipient_accounts = get_accounts_by_user(recipient_user["id"])
             if not recipient_accounts:
-                messagebox.showerror("Error", "Recipient has no bank account.")
+                messagebox.showerror("Error", "Recipient has no bank account")
                 return
 
             sender           = Account(account_id=account_id)
@@ -60,7 +58,7 @@ def build_transfer_tab(parent, account_id: int, on_done=None):
 
             sender.transferer(
                 amount=amount,
-                compte_destinataire=recipient,
+                recipient_accounts=recipient,
                 description=desc_entry.get().strip() or "Transfer",
             )
             messagebox.showinfo("Success",

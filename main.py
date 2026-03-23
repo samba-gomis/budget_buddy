@@ -1,6 +1,3 @@
-# main.py
-# Entry point — initializes the database and handles navigation between views
-
 from databases.database import init_db
 from gui.LoginView import LoginView
 from gui.RegisterView import RegisterView

@@ -1,6 +1,3 @@
-# gui/OperationsView.py
-# Assembles the 3 operation tabs: deposit, withdrawal, transfer
-
 import customtkinter as ctk
 from gui.operations.Deposit_tab import build_deposit_tab
 from gui.operations.Withdrawal_tab import build_withdrawal_tab
@@ -18,7 +15,7 @@ class OperationsView(ctk.CTkFrame):
     def _build_ui(self):
         ctk.CTkLabel(self, text="Operations",
                      font=("Roboto", 20, "bold")).pack(pady=(20, 4))
-        ctk.CTkLabel(self, text="Choose an operation below.",
+        ctk.CTkLabel(self, text="Choose an operation below",
                      font=("Roboto", 12), text_color="gray").pack(pady=(0, 16))
 
         tabs = ctk.CTkTabview(self)

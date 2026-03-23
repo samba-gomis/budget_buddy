@@ -1,6 +1,3 @@
-# services/transaction_service.py
-# Business logic for retrieving and filtering transactions
-
 from repositories import transaction_repo
 
 

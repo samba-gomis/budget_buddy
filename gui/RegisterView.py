@@ -1,5 +1,3 @@
-# gui/RegisterView.py
-
 from repositories.auth_service import register
 import customtkinter as ctk
 from tkinter import messagebox

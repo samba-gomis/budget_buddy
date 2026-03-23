@@ -1,5 +1,5 @@
 class User:
-    """Simple data container representing a logged-in user."""
+    """Simple data container representing a logged-in user"""
 
     def __init__(self, id: int, last_name: str, first_name: str, email: str):
         self.user_id    = id
