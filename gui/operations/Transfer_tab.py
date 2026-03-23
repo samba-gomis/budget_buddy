@@ -46,19 +46,19 @@ def build_transfer_tab(parent, account_id: int, on_done=None):
                 messagebox.showerror("Error", "No account found with this email")
                 return
 
-            recipient_accounts = get_accounts_by_user(recipient_user["id"])
-            if not recipient_accounts:
+            destination_account = get_accounts_by_user(recipient_user["id"])
+            if not destination_account:
                 messagebox.showerror("Error", "Recipient has no bank account")
                 return
 
             sender           = Account(account_id=account_id)
             sender.balance   = get_balance(account_id)
-            recipient        = Account(account_id=recipient_accounts[0]["id"])
-            recipient.balance = recipient_accounts[0]["balance"]
+            recipient        = Account(account_id=destination_account[0]["id"])
+            recipient.balance = destination_account[0]["balance"]
 
-            sender.transferer(
+            sender.transfer(
                 amount=amount,
-                recipient_accounts=recipient,
+                destination_account=recipient,
                 description=desc_entry.get().strip() or "Transfer",
             )
             messagebox.showinfo("Success",
